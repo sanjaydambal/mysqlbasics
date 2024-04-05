@@ -1,0 +1,2 @@
+-- union combines two columns vertically removing the duplicates while inner join combines horizontally removing the duplicates
+-- union only combines two result set and outputs only distinct values from the two tables whereas union all output all the values from the two tables
