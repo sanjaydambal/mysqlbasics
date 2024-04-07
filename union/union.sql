@@ -38,3 +38,5 @@ select id from t1 intersect select id from t2;
 
 -- CTE A common table expression is a named temporary result set that exists solely within the execution scope of a single SQL statement, such as SELECT, INSERT, UPDATE, or DELETE.
 with customers_usa as (select customername,state,creditLimit from customers where country = "usa")select customername,creditLimit from customers_usa where state = "CA" order by customername;
+
+with topSales2003 as ( select salesrepemployeenumber employeenumber,sum(priceEach * quantityOrdered) sales from orders inner join orderDetails using (orderNumber) inner join customers using (customerNumber) where Year(shippedDate) = 2003 and status = "shipped" group by employeenumber order by sales desc limit 5) select employeenumber,lastname,firstname,sales from employees join topSales2003 using (employeenumber);
